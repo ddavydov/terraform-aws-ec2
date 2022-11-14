@@ -3,6 +3,13 @@ locals {
 }
 
 locals {
+  userdata = {
+    tg_token = var.tg_token,
+    tg_chat_id = var.tg_chat_id,
+  }
+}
+
+locals {
   security_groups = {
     public = {
       name        = "public_sg"

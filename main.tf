@@ -7,6 +7,7 @@ module "network" {
 
 module "ec2" {
   source        = "./ec2"
+  userdata      = local.userdata
   public_sg     = module.network.public_sg
   public_subnet = module.network.public_subnet
 }

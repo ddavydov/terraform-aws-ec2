@@ -14,23 +14,20 @@ resource "aws_key_pair" "key_pair" {
   }
 }
 
-# Create a EC2 Instance (Ubuntu 20)
+# Create a EC2 Instance (Ubuntu 22)
 resource "aws_instance" "node" {
-  instance_type          = "t2.micro" # free instance
-  ami                    = "ami-0d527b8c289b4af7f"
+  instance_type          = "t3.micro" # free instance
+  ami                    = "ami-00b696228b0185ffe"
   key_name               = aws_key_pair.key_pair.id
   vpc_security_group_ids = [var.public_sg]
   subnet_id              = var.public_subnet
 
   tags = {
-    Name = "TF Generated EC2"
+    Name = "node-0"
   }
 
-  user_data = file("${path.root}/ec2/userdata.tpl")
-
-  root_block_device {
-    volume_size = 10
-  }
+  user_data_base64 = base64encode(templatefile("${path.module}/userdata.tftpl", var.userdata))
+  user_data_replace_on_change = true
 }
 
 # Create and assosiate an Elastic IP
