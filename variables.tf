@@ -4,7 +4,7 @@ variable "access_ip" {
 
 variable "aws_region" {
   type    = string
-  default = "eu-north-1"
+  default = "us-east-1"
 }
 variable "tg_token" {
   type = string
