@@ -26,7 +26,7 @@ services:
   mhddos:
     image: ghcr.io/porthole-ascend-cinnamon/mhddos_proxy:latest
     restart: unless-stopped
-    command: --lang en
+    command: --lang en --copies 1 --threads 500
 EOF
 
 cat > tg.sh <<EOF
